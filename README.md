@@ -3,8 +3,8 @@
 
 
 ### SYNOPSIS:
-<p>To run this program:</p>
-**virtualmem [−h] [-f available-frames] [−r replacement-policy] [−i input_file]**
+To run this program:
+> **virtualmem [−h] [-f available-frames] [−r replacement-policy] [−i input_file]**
 
 
 ### DESCRIPTION:
