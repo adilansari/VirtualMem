@@ -12,7 +12,9 @@ Class 9: Print results
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "fifo.c"
+#include<sys/types.h>
+#include<sys/time.h>
+//#include "fifo.c"
 
 #define BUF_SIZE 1024
 
@@ -112,16 +114,20 @@ int main(int argc, char *argv[]) {
 
 void algo() {
 	printf("\n gamma 4 \n");
+	int replace_count1;
+	struct timeval start1, stop1, start2, stop2;
+		long elapsed_msec1, elapsed_msec2;
+		gettimeofday(&start1, NULL);
 	if (algo_flag == 2) {
-		//lfu
+		//replace_count1 lfu_eval();
 		printf("\n gamma 5 \n");
 	}else if(algo_flag == 3) {
-		//lru-stack
+		//replace_count1 lru-stack_eval();
 		printf("\n gamma 6 \n");
 	}else if(algo_flag == 4) {
-		//lru-clock
+		//replace_count1 lru-clock_eval();
 	} else if(algo_flag == 5) {
-		//lru-ref8
+		//replace_count1= lru-ref8_eval();
 	} else {
 		printf("\n gamma 2 \n");
 		printf("%d %d \n", frames,j);
@@ -130,8 +136,19 @@ void algo() {
 			for(k=0;k<j;k++) {
 				printf("%d ",str[k]);
 			}
-		//fifo_eval(str,frames,j);
+		//replace_count1= fifo_eval(str,frames,j);
 	}
+	gettimeofday(&stop1, NULL);
+	elapsed_msec1= stop1.tv_usec-start1.tv_usec;
+	gettimeofday(&start2, NULL);
+	//int replace_count2 = optimal_eval();
+	gettimeofday(&stop2, NULL);
+		elapsed_msec2= stop2.tv_usec-start2.tv_usec;
+	//print_results(elapsed_msec1, elapsed_msec2, replace_count1, replace_count2)
+}
+
+void print_results(long time_alg, long time_opt, int replace_alg, int replace_opt) {
+
 }
 
 void usage() {
