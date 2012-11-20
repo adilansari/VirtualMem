@@ -75,7 +75,6 @@ for(i=0;i<str_size;i++) {
       replace_count=replace_count+1;
     }
 }
-//printf("Page Replacements: %d \n", replace_count);
 return replace_count;
 }
 
@@ -87,18 +86,3 @@ while(l!=NULL) {
 }
 return lil;
 }
-
-/*int main(char argc,char *agrv[]) {
-	int orig_str[]= {4,7,0,7,1,0,1,2,1,2,1,2,7,1,2};
-	lru_stack_eval(orig_str,3,15);
-	int orig_str[]= {1,2,3,4,1,2,5,1,2,3,4,5};
-	lru_stack_eval(orig_str,4,12); r-2
-	int orig_str[]= {7,0,1,2,0,3,0,4,2,3,0,3,2,1,2,0,1,7,0,1};
-	lru_stack_eval(orig_str,3,20);
-	int orig_str[]= {4,7,0,7,1,0,1,2,1,2,1,2,7,1,2};
-	lru_stack_eval(orig_str,3,15);  r-2
-	int orig_str[]= {0,4,3,2,1,4,6,3,0};
-	lru_stack_eval(orig_str,3,9); f-,r-
-
-		return 0;
-}*/
