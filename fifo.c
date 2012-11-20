@@ -10,7 +10,7 @@ int fifo_eval(int orig_str[], int alloc_frames, int str_size) {
 	int page_table[alloc_frames];
 	int index,flag,i, j=0,fault_count=0;
 
-	struct timeval start, stop;
+	/*struct timeval start, stop;
 	long elapsed_usec, elapsed_msec;
 	gettimeofday(&start, NULL);
 
@@ -18,7 +18,7 @@ int fifo_eval(int orig_str[], int alloc_frames, int str_size) {
 	printf("incoming values %d %d \n", alloc_frames, str_size);
 	for(i=0;i<str_size;i++) {
 		printf("%d,", orig_str[i]);
-	}
+	}*/
 	for (i=0;i<str_size;i++) {
 		flag=0;
 		for(index=0;index<alloc_frames;index++) {
@@ -32,15 +32,15 @@ int fifo_eval(int orig_str[], int alloc_frames, int str_size) {
 						j++;
 							}
 	}
-	gettimeofday(&stop, NULL);
+	/*gettimeofday(&stop, NULL);
 
 	elapsed_msec= stop.tv_sec-start.tv_sec;
 	elapsed_usec= stop.tv_usec-start.tv_usec;
 
 	printf("Total faults: %d \n", fault_count);
-	int replace_count= fault_count- alloc_frames;
 	printf("Total Page replacements: %d \n", replace_count);
-	printf("time taken= %ld seconds %ld microseconds \n",elapsed_msec, elapsed_usec);
+	printf("time taken= %ld seconds %ld microseconds \n",elapsed_msec, elapsed_usec);*/
+	int replace_count= fault_count- alloc_frames;
 	return replace_count;
 }
 

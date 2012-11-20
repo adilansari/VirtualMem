@@ -3,20 +3,20 @@
 #include <sys/time.h>
 #include <sys/types.h>
 
-struct reference_string {
+struct refer_string {
 	int pos; //position
 	int referred_page; //input string for the page number t be accessed
 };
 
 
-void optimal_eval(int orig_str[], int alloc_frames, int str_size) {
-	struct reference_string page[str_size];
-	struct reference_string page_table[alloc_frames];
+int optimal_eval(int orig_str[], int alloc_frames, int str_size) {
+	struct refer_string page[str_size];
+	struct refer_string page_table[alloc_frames];
 	int i,j=0,k=0,index,flag,fault_count=0, replace_count=0, frame_count=0, rm_ptr=0;
 
-	struct timeval start, stop;
+	/*struct timeval start, stop;
 	long elapsed_usec, elapsed_msec;
-	gettimeofday(&start, NULL);
+	gettimeofday(&start, NULL);*/
 
 	for (i=0;i<str_size;i++) {
 		page[i].referred_page= orig_str[i];
@@ -26,9 +26,11 @@ void optimal_eval(int orig_str[], int alloc_frames, int str_size) {
 				page[j].pos = page[i].pos;
 			}
 		}
-	}for(i=0;i<str_size;i++) {
+	}
+	/*for(i=0;i<str_size;i++) {
 		printf("Page %d = %d ;pos_max= %d \n", i, page[i].referred_page, page[i].pos);
-	}for(i=0;i<alloc_frames;i++) {
+	}*/
+	for(i=0;i<alloc_frames;i++) {
 		page_table[i].pos=0;
 	}
 
@@ -37,7 +39,7 @@ void optimal_eval(int orig_str[], int alloc_frames, int str_size) {
 
 		for(index=0;index < alloc_frames;index++) {
 			if(page[i].referred_page == page_table[index].referred_page) {
-				printf("match found \n");
+				//printf("match found \n");
 				flag=1;
 				if(i == page[i].pos) {
 						page_table[index].pos =0;
@@ -97,7 +99,7 @@ void optimal_eval(int orig_str[], int alloc_frames, int str_size) {
 						rm_ptr= (rm_ptr+1) % alloc_frames;
 					}
 		}
-	printf("New page pos updated: \n");
+	/*printf("New page pos updated: \n");
 	for(i=0;i<str_size;i++) {
 			printf("Page %d = %d ;pos= %d \n", i, page[i].referred_page, page[i].pos);
 		}
@@ -108,13 +110,14 @@ void optimal_eval(int orig_str[], int alloc_frames, int str_size) {
 
 		printf("Total faults: %d \n", fault_count);
 		printf("Page replacements: %d \n", replace_count);
-		printf("time taken= %ld seconds %ld microseconds \n",elapsed_msec, elapsed_usec);
+		printf("time taken= %ld seconds %ld microseconds \n",elapsed_msec, elapsed_usec);*/
+		return replace_count;
 }
 
-void main() {
+/*void main() {
 	int orig_str[]= {1,2,3,4,1,2,5,1,2,3,4,5};
 	optimal_eval(orig_str,4,12);
-	/*int orig_str[]= {1,2,3,4,1,2,5,1,2,3,4,5};
+	int orig_str[]= {1,2,3,4,1,2,5,1,2,3,4,5};
 	optimal_eval(orig_str,4,12); f-6; r-2
 	int orig_str[]= {7,0,1,2,0,3,0,4,2,3,0,3,2,1,2,0,1,7,0,1};
 	optimal_eval(orig_str,3,20);
@@ -122,5 +125,5 @@ void main() {
 	optimal_eval(orig_str,3,15); f-5, r-2
 	int orig_str[]= {0,4,3,2,1,4,6,3,0};
 	optimal_eval(orig_str,3,9); f-7,r-4
-	*/
-}
+
+}*/

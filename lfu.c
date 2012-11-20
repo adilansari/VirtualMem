@@ -9,21 +9,23 @@ struct reference_string {
 };
 
 
-void lfu_eval(int orig_str[], int alloc_frames, int str_size) {
+int lfu_eval(int orig_str[], int alloc_frames, int str_size) {
 	struct reference_string page[str_size];
 	struct reference_string page_table[alloc_frames];
 	int i,j=0,k=0,index,flag,fault_count=0,rm_ptr=0, frame_count=0, replace_count=0;
 
-	struct timeval start, stop;
+	/*struct timeval start, stop;
 	long elapsed_usec, elapsed_msec;
-	gettimeofday(&start, NULL);
+	gettimeofday(&start, NULL);*/
 
 	for (i=0;i<str_size;i++) {
 		page[i].referred_page= orig_str[i];
 		page[i].freq=0;
-	}for(i=0;i<str_size;i++) {
+	}
+	/*for(i=0;i<str_size;i++) {
 		printf("Page %d = %d ;freq= %d \n", i, page[i].referred_page, page[i].freq);
-	} for(i=0;i<alloc_frames;i++) {
+	}*/
+	for(i=0;i<alloc_frames;i++) {
 		//page_table[i].referred_page=0;
 		page_table[i].freq=0;
 	}
@@ -93,7 +95,7 @@ void lfu_eval(int orig_str[], int alloc_frames, int str_size) {
 		frame_count++;
 		//rm_ptr= (rm_ptr+1) % alloc_frames;
 	}
-	printf("New page frequencies updated: \n");
+	/*printf("New page frequencies updated: \n");
 	for(i=0;i<str_size;i++) {
 			printf("Page %d = %d ;freq= %d \n", i, page[i].referred_page, page[i].freq);
 		}
@@ -104,17 +106,18 @@ void lfu_eval(int orig_str[], int alloc_frames, int str_size) {
 
 		printf("Total faults: %d \n", fault_count);
 		printf("Total Page replacements: %d \n", replace_count);
-		printf("time taken= %ld seconds %ld microseconds \n",elapsed_msec, elapsed_usec);
+		printf("time taken= %ld seconds %ld microseconds \n",elapsed_msec, elapsed_usec);*/
+		return replace_count;
 }
 
-void main() {
+/*void main() {
 	int orig_str[]= {4,7,0,7,1,0,1,2,1,2,1,2,7,1,2};
 	lfu_eval(orig_str,3,15);
-	/*int orig_str[]= {1,2,3,4,1,2,5,1,2,3,4,5};
+	int orig_str[]= {1,2,3,4,1,2,5,1,2,3,4,5};
 	lfu_eval(orig_str,4,12); faul-7 ; repl-3
 	int orig_str[]= {4,7,0,7,1,0,1,2,1,2,1,2,7,1,2};
 	lfu_eval(orig_str,3,15); faul-6; repl-3
 	int orig_str[]= {7,0,1,2,0,3,0,4,2,3,0,3,2,1,2,0,1,7,0,1};
 	lfu_eval(orig_str,3,20);
-	*/
-}
+
+}*/

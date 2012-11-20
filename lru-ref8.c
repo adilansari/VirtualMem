@@ -4,8 +4,8 @@
 #include <sys/types.h>
 //#include <iostream.>
 
-void lru_ref8_eval(int orig_str[],int alloc_frames,int str_size) {
-	printf("hello");
+int lru_ref8_eval(int orig_str[],int alloc_frames,int str_size) {
+//	/printf("hello");
 int bit_arr[alloc_frames][2],pos=0,flag=0,rem_ptr=0,replace_count=0,min=0,i=0,j=0,k=0;
 for(i=0;i<alloc_frames;i++) {
 	//printf("\n alpha 1");
@@ -59,13 +59,14 @@ for(i=0;i<str_size;i++) {
         replace_count=replace_count+1;
     }
 }
-printf("\n Page replacements: %d\n",replace_count);
+///printf("\n Page replacements: %d\n",replace_count);
+return replace_count;
 }
 
-void main() {
+/*void main() {
 	int orig_str[]= {1,2,3,4,1,2,5,1,2,3,4,5};
 	lru_ref8_eval(orig_str,4,12);
-	/*int orig_str[]= {1,2,3,4,1,2,5,1,2,3,4,5};
+	int orig_str[]= {1,2,3,4,1,2,5,1,2,3,4,5};
 	lru_ref8_eval(orig_str,4,12); f-6; r-2
 	int orig_str[]= {7,0,1,2,0,3,0,4,2,3,0,3,2,1,2,0,1,7,0,1};
 	lru_ref8_eval(orig_str,3,20);
@@ -73,6 +74,6 @@ void main() {
 	lru_ref8_eval(orig_str,3,15); f-6, r-3
 	int orig_str[]= {0,4,3,2,1,4,6,3,0};
 	lru_ref8_eval(orig_str,3,9); f-,r-
-	*/
+
 		//return 0;
-}
+}*/
