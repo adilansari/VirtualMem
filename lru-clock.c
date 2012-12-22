@@ -42,6 +42,11 @@ int lru_clock_eval(int orig_str[], int alloc_frames, int str_size) {
 				rm_ptr= (rm_ptr+1) % alloc_frames;
 			}
 		}
+		//---------------
+		if (frame_count > str_size+1) {
+			index=0;
+		}
+		//---------------
 		replace_count= fault_count -alloc_frames;
 	}
 		return replace_count;

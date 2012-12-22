@@ -82,10 +82,19 @@ int lfu_eval(int orig_str[], int alloc_frames, int str_size) {
 			}
 			page_table[j]= page[i];
 			fault_count++;
-			replace_count++;
+			replace_count=replace_count+1;
 			rm_ptr= (rm_ptr+1) % alloc_frames;
 		}
 		frame_count++;
 	}
-		return replace_count;
+		return (fault_count-alloc_frames);
 }
+
+/*int main() {
+	int arr[]= {1, 2, 1, 2, 3, 4,1,2,5,1,2,3, 4 ,  5 , 1 , 2,  3};
+	int frames= 3, j=17;
+	int a= lfu_eval(arr,frames,j);
+	printf("\n Evaluated= %d", a);
+	return 0;
+}
+*/

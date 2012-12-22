@@ -43,7 +43,7 @@ int main(int argc, char *argv[]) {
 		}
 		if(strcmp(argv[i],"-f")==0) {
 			frames= atoi(argv[i+1]);
-			printf("\n gamma 0");
+			//printf("\n gamma 0");
 				}
 		if(strcmp(argv[i],"-r")==0) {
 					if(strcmp(argv[i+1],"LFU")==0) {
@@ -73,30 +73,36 @@ int main(int argc, char *argv[]) {
 	}
 	FILE *fp;
 	fp= fopen(filename, "r");
-
+	char s[BUF_SIZE];
+			int c,flag;
+			int k=0;
 	if (fp == NULL) {
-		printf("Cannot open file %s \n", argv[1]);
+		printf("Enter the input string: \n");
+		gets(s);
+		k=strlen(s);
+		k= k+1;
+		printf("%d",k);
 	}
 	else {
-		char s[BUF_SIZE];
-		int c,flag;
-		int k=0;
+
 		if (fp) {
 			while ((s[k] = fgetc(fp)) != EOF) {
 						k++;
 					}
 		}
-		fclose(fp);
 		s[k]='\0';
-		printf("\n %d BUFFER:",k);
+		fclose(fp);
+	}
+		/*printf("\n %d BUFFER:",k);
 		for(c=0;c<k;c++) {
 			printf(" %c", s[c]);
-		}
-		int p=k;
-		for(c=0;c<=p;c++) {
+		}*/
+		int x=k;
+		for(c=0;c<=x;c++) {
 			k=0;
 			flag=0;
 			while(!isspace(s[c])) {
+				//printf("c- %d", c);
 				k= k*10 + s[c]-'0';
 				c++;
 				flag=1;
@@ -105,23 +111,24 @@ int main(int argc, char *argv[]) {
 				str[j++]=k;
 		}
 		j=j-1;
-	}
 	printf("\n Captured Int array \n");
 	int p;
 	for(p=0;p<j;p++) {
 		printf("%d ",str[p]);
 	}
-	algo();
+	printf("\n accepted: %d , %d", frames,j);
+	algo(algo_flag);
 	return 0;
 }
 
-void algo() {
+void algo(int alg_flag) {
+	int algo_flag=alg_flag;
 	int replace_count1;
 	struct timeval start1, stop1, start2, stop2;
 		long elapsed_msec1, elapsed_msec2;
 		gettimeofday(&start1, NULL);
 	if (algo_flag == 2) {
-		replace_count1= lfu_eval(str, frames,j);
+		replace_count1= lfu_eval(str,frames,j);
 	}else if(algo_flag == 3) {
 		replace_count1= lru_stack_eval(str,frames,j);
 	}else if(algo_flag == 4) {
@@ -170,6 +177,12 @@ void print_results(long time_alg, long time_opt, int replace_alg, int replace_op
 }
 
 void usage() {
-	printf("No help will be offered to you, get lost \n");
+	printf("\n**************************************************************************");
+	printf("\n virtualmem [âˆ’h] [-f available-frames] [âˆ’r replacement-policy] [âˆ’i input_file]");
+	printf("\n Give -f then value to change by default frames value");
+	printf("\n Give -r then relacement-policy to change by default value for example -r lru");
+	printf("\n Give -i and then filename of input file for example: home/workspace/virtualmem/src/input.txt");
+	printf("\n Press Ctrl+c anytime to exit the server");
+	printf("\n **************************************************************************");
 	exit(1);
 }

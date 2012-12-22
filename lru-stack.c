@@ -46,8 +46,9 @@ for(i=0;i<str_size;i++) {
        newnode->next=root;
        root=newnode;
     }
-    //node1=root;
-    else if(flag==1) {         // if element is present
+    //Changes to be made here
+    /*
+    else if(flag==1) {
        while(pos1<pos-1) {
               node1=node1->next;
 	      pos1=pos1+1;
@@ -66,6 +67,30 @@ for(i=0;i<str_size;i++) {
 	    pos=pos+1;
 	    node1=node1->next;
       }
+      */
+    //new --------------
+    else if(flag==1 && root->data != orig_str[i]) { //change here
+          while(pos1 != pos-1) {
+                 node1=node1->next;
+   	      pos1=pos1+1;
+          }
+          while(pos2 != pos) { //here
+   	      node2=node2->next;
+                 pos2=pos2+1;
+          }
+          node1->next=node2->next;
+          node2->next=root;
+          root=node2;
+       }
+    else if (flag==1 && root->data == orig_str[i]) { //this is insert
+    	root->data = orig_str[i];
+    }
+       else { //new else loop
+         while(node2->next != NULL) {
+   	    node1=node2;
+   	    node2=node2->next;
+         }
+    // new ------------
       node1->next=NULL;
       struct node *newnode;
       newnode=malloc(sizeof(struct node));//new node;
