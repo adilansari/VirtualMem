@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=640" />
+
+    <link rel="stylesheet" href="stylesheets/core.css" media="screen"/>
+    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)"/>
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
+
+    <script type="text/javascript" src="javascripts/modernizr.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('#main_content').headsmart()
+      })
+    </script>
+    <title>Virtualmem by adilansari</title>
+  </head>
+
+  <body>
+    <a id="forkme_banner" href="https://github.com/adilansari/VirtualMem">View on GitHub</a>
+    <div class="shell">
+
+      <header>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <h1>Virtualmem</h1>
+            <h2>Virtual Memory Management algorithms</h2>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+      </header>
+
+      <section id="downloads">
+        <span class="inner">
+          <a href="https://github.com/adilansari/VirtualMem/zipball/master" class="zip"><em>download</em> .ZIP</a><a href="https://github.com/adilansari/VirtualMem/tarball/master" class="tgz"><em>download</em> .TGZ</a>
+        </span>
+      </section>
+
+
+      <span class="banner-fix"></span>
+
+
+      <section id="main_content">
+        <h1>Virtual Memory Manager “virtualmem” in C/C++ on a UNIX-based platform.</h1>
+
+<h3>SYNOPSIS:</h3>
+
+<p>To run this program:</p>
+
+<blockquote>
+<p><strong>virtualmem [−h] [-f available-frames] [−r replacement-policy] [−i input_file]</strong></p>
+</blockquote>
+
+<h3>DESCRIPTION:</h3>
+
+<p><em>virtualmem</em> is a simple virtual memory manager. It takes a sequence of page references as an input, as well as the number of available frames. It performs the placement of these pages to the available frames using the page replacement policy specified by the user.</p>
+
+<h3>OPTIONS:</h3>
+
+<ul>
+<li>  <strong>−h</strong> : Print a usage summary with all options and exit.</li>
+<li>  <strong>−f</strong> : <em>available-frames</em> : Set the number of available frames. By default it should be 5.</li>
+<li>  <strong>−r</strong> : <em>replacement-policy</em> : Set the page replacement policy. It can be either:
+
+<ul>
+<li>  <strong>FIFO</strong> (First-in-first-out)</li>
+<li>  <strong>LFU</strong> (Least-frequently-used)</li>
+<li>  <strong>LRU-STACK</strong> (Least-recently-used stack implementation)</li>
+<li>  <strong>LRU-CLOCK</strong> (Least-recently-used clock implementation –second chance algo)</li>
+<li>  <strong>LRU-REF8</strong> (Least-recently-used Reference-bitImplementation, using 8 reference bits)
+<em>The default will be FIFO.</em>
+</li>
+</ul>
+</li>
+<li>  <strong>−i</strong> : <em>input file</em> : Read the page reference sequence from a specified file. If not given,the sequence should be read from STDIN (ended with ENTER).</li>
+</ul><h3>OUTPUT:</h3>
+
+<p>Also implemented the Optimal page replacement algorithm, and compared the performance of the replacement-policy chosen by the user (above) to the Optimal algorithm, in terms of number of page replacements for the given string. i.e:</p>
+
+<pre><code>$ virtualmem –f 10 –r LFU –i myinputfile
+# of page replacements with LFU : 118
+# of page replacements with Optimal : 85
+% page replacement penalty using LFU : 38.8%
+
+Total time to run LFU algorithm : 1214 msec
+Total time to run Optimal algorithm : 1348 msec
+LFU is 9.9% faster than Optimal algorithm.'
+</code></pre>
+      </section>
+
+      <footer>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <p>this project by <a href="https://github.com/adilansari">adilansari</a> can be found on <a href="https://github.com/adilansari/VirtualMem">GitHub</a></p>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+        <p>Generated with <a href="http://pages.github.com">GitHub Pages</a> using Merlot</p>
+        <span class="octocat"></span>
+      </footer>
+
+    </div>
+
+    
+  </body>
+</html>
